@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recap Revolved</title>
+    <meta name="description" content="Dashboard for game launch and session tracking" />
+    <script src="/chart.umd.min.js"></script>
+    <script type="module" src="/src/scripts/index.js"></script>
+    <link rel="stylesheet" href="/src/styles/index.css" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  </head>
+  <body>
+    <div id="app">
+      <div class="app-shell">
+        <aside class="topbar">
+          <div class="eyebrow">Recap Revolved</div>
+          <img src="./src/images/logo.png" width="48" height="48" alt="Recap Revolved logo" />
+        </aside>
+
+        <main class="workspace">
+          <nav class="view-switcher">
+            <button class="view-btn" data-target="dashboard">Dashboard</button>
+            <button class="view-btn" data-target="library">Library</button>
+            <button class="view-btn" data-target="stats">Stats</button>
+          </nav>
+
+          <!-- DASHBOARD VIEW -->
+          <div class="view" data-view="dashboard">
+            <section class="grid dashboard-grid">
+              <div class="card hero-card span-2">
+                <div class="card-header">
+                  <div>
+                    <div class="eyebrow">Weekly overview</div>
+                    <h2>Activity at a glance</h2>
+                  </div>
+                </div>
+                <div id="dashboardMetrics" class="metrics"></div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <div class="eyebrow">Top games</div>
+                    <h2>Most played this week</h2>
+                  </div>
+                </div>
+                <div id="topGamesList" class="bar-list"></div>
+              </div>
+
+              <div class="card dashboard-chart-card span-2">
+                <div class="card-header">
+                  <div>
+                    <div class="eyebrow">Activity charts</div>
+                    <h2>Minutes played and session count</h2>
+                  </div>
+                </div>
+                <div class="chart-container dashboard-chart">
+                  <canvas id="weekly-chart"></canvas>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <div class="eyebrow">Recent sessions</div>
+                    <h2>Latest launches</h2>
+                  </div>
+                </div>
+                <div id="recentSessionsList" class="session-list"></div>
+              </div>
+
+              <div class="card span-2">
+                <div class="card-header">
+                  <div>
+                    <div class="eyebrow">Notable facts</div>
+                    <h2>Quick activity highlights</h2>
+                  </div>
+                </div>
+                <div id="dashboardFacts" class="fact-grid"></div>
+              </div>
+            </section>
+          </div>
+
+          <!-- LIBRARY VIEW -->
+          <div class="view" data-view="library">
+            <section class="games-layout" id="gamesView">
+              <aside class="card-good sidebar">
+                <div class="compact">
+                  <div class="games-library">
+                    <div class="eyebrow">Library</div>
+                    <h2>Games</h2>
+                  </div>
+                </div>
+
+                <label class="search-box">
+                  <div class="search-input-wrap">
+                    <img
+                      class="search-icon"
+                      src="./src/images/search.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                    <input id="searchInput" type="search" placeholder="Search..." />
+                  </div>
+                </label>
+
+                <div id="gameList" class="game-list"></div>
+              </aside>
+
+              <section class="card-good details-panel" id="detailsPanel">
+                <div class="game-banner">
+                  <div class="banner-overlay"></div>
+                  <div class="banner-copy">
+                    <h2 id="gameName"></h2>
+                    <p id="gameBanner"></p>
+                  </div>
+                </div>
+
+                <div class="details-body">
+                  <div id="detailsGrid" class="details-grid"></div>
+                  <div class="detail-panels">
+                    <div class="chart-container">
+                      <canvas id="trend-chart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </section>
+          </div>
+
+          <!-- STATS VIEW -->
+          <div class="view" data-view="stats">
+            <section class="stats-layout">
+              <div class="card span-2">
+                <div class="card-header stats-header">
+                  <div>
+                    <div class="eyebrow">Historical stats</div>
+                    <h2>Playtime over time</h2>
+                  </div>
+                  <div class="stats-controls">
+                    <div class="range-picker" id="statsRangePicker" aria-label="Stats time range">
+                      <button class="range-btn" type="button" data-range="1w">1w</button>
+                      <button class="range-btn" type="button" data-range="1m">1m</button>
+                      <button class="range-btn" type="button" data-range="3m">3m</button>
+                      <button class="range-btn" type="button" data-range="6m">6m</button>
+                      <button class="range-btn" type="button" data-range="1y">1y</button>
+                      <button class="range-btn" type="button" data-range="5y">5y</button>
+                      <button class="range-btn" type="button" data-range="all">All</button>
+                    </div>
+                    <select id="statsGameFilter" class="game-filter" aria-label="Filter stats by game">
+                      <option value="">All games</option>
+                    </select>
+                  </div>
+                </div>
+                <div id="statsMetrics" class="metrics stats-metrics"></div>
+                <div class="chart-container stats-chart">
+                  <canvas id="stats-chart"></canvas>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <div class="eyebrow">Breakdown</div>
+                    <h2>Top games in range</h2>
+                  </div>
+                </div>
+                <div id="statsTopGamesList" class="bar-list"></div>
+              </div>
+            </section>
+          </div>
+
+        </main>
+      </div>
+    </div>
+
+    <template id="metric-template">
+      <div class="metric">
+        <span class="metric-label"></span>
+        <strong class="metric-value"></strong>
+      </div>
+    </template>
+
+    <template id="fact-template">
+      <article class="fact-card">
+        <span class="fact-label"></span>
+        <strong class="fact-value"></strong>
+        <p class="muted fact-copy"></p>
+      </article>
+    </template>
+
+    <template id="game-row-template">
+      <button class="game-row" type="button">
+        <span class="game-swatch" aria-hidden="true"></span>
+        <div class="game-row-copy">
+          <span class="game-name"></span>
+        </div>
+      </button>
+    </template>
+
+    <template id="top-game-template">
+      <div class="bar-row">
+        <div class="bar-meta">
+          <strong class="top-game-name"></strong>
+          <span class="top-game-hours"></span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill"></div>
+        </div>
+      </div>
+    </template>
+
+    <template id="session-template">
+      <article class="session-item">
+        <div>
+          <strong class="session-name"></strong>
+          <div class="muted session-date"></div>
+        </div>
+        <div class="session-badge session-duration"></div>
+      </article>
+    </template>
+
+    <template id="empty-state-template">
+      <div class="empty-state">
+        <h3 class="empty-title"></h3>
+        <p class="muted empty-copy"></p>
+      </div>
+    </template>
+  </body>
+</html>
