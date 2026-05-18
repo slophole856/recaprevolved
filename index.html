@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recap Revolved</title>
+    <meta name="description" content="Dashboard for game launch and session tracking" />
+    <script src="./chart.umd.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <script type="module" crossorigin src="./assets/index-ViQTsrf8.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CcVWrtCO.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="app-shell">
+        <aside class="topbar">
+          <div class="eyebrow">Recap Revolved</div>
+          <img src="data:image/png;base64,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" width="48" height="48" alt="Recap Revolved logo" />
+        </aside>
+
+        <main class="workspace">
+          <nav class="view-switcher">
+            <button class="view-btn" data-target="dashboard">Dashboard</button>
+            <button class="view-btn" data-target="library">Library</button>
+            <button class="view-btn" data-target="stats">Stats</button>
+          </nav>
+
+          <!-- DASHBOARD VIEW -->
+          <div class="view" data-view="dashboard">
+            <section class="grid dashboard-grid">
+              <div class="card hero-card span-2">
+                <div class="card-header">
+                  <div>
+                    <div class="eyebrow">Weekly overview</div>
+                    <h2>Activity at a glance</h2>
+                  </div>
+                </div>
+                <div id="dashboardMetrics" class="metrics"></div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <div class="eyebrow">Top games</div>
+                    <h2>Most played this week</h2>
+                  </div>
+                </div>
+                <div id="topGamesList" class="bar-list"></div>
+              </div>
+
+              <div class="card dashboard-chart-card span-2">
+                <div class="card-header">
+                  <div>
+                    <div class="eyebrow">Activity charts</div>
+                    <h2>Minutes played and session count</h2>
+                  </div>
+                </div>
+                <div class="chart-container dashboard-chart">
+                  <canvas id="weekly-chart"></canvas>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <div class="eyebrow">Recent sessions</div>
+                    <h2>Latest launches</h2>
+                  </div>
+                </div>
+                <div id="recentSessionsList" class="session-list"></div>
+              </div>
+
+              <div class="card span-2">
+                <div class="card-header">
+                  <div>
+                    <div class="eyebrow">Notable facts</div>
+                    <h2>Quick activity highlights</h2>
+                  </div>
+                </div>
+                <div id="dashboardFacts" class="fact-grid"></div>
+              </div>
+            </section>
+          </div>
+
+          <!-- LIBRARY VIEW -->
+          <div class="view" data-view="library">
+            <section class="games-layout" id="gamesView">
+              <aside class="card-good sidebar">
+                <div class="compact">
+                  <div class="games-library">
+                    <div class="eyebrow">Library</div>
+                    <h2>Games</h2>
+                  </div>
+                </div>
+
+                <label class="search-box">
+                  <div class="search-input-wrap">
+                    <img
+                      class="search-icon"
+                      src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20fill='%23a5aa9f'%20width='800px'%20height='800px'%20viewBox='0%200%20256.00098%20256.00098'%20id='Flat'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M226.82129,221.17236,180.955,175.306a88.10138,88.10138,0,1,0-5.657,5.65649L221.165,226.82959a3.99992,3.99992,0,0,0,5.65625-5.65723ZM35.999,116a80,80,0,1,1,80,80A80.09041,80.09041,0,0,1,35.999,116Z'/%3e%3c/svg%3e"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                    <input id="searchInput" type="search" placeholder="Search..." />
+                  </div>
+                </label>
+
+                <div id="gameList" class="game-list"></div>
+              </aside>
+
+              <section class="card-good details-panel" id="detailsPanel">
+                <div class="game-banner">
+                  <div class="banner-overlay"></div>
+                  <div class="banner-copy">
+                    <h2 id="gameName"></h2>
+                    <p id="gameBanner"></p>
+                  </div>
+                </div>
+
+                <div class="details-body">
+                  <div id="detailsGrid" class="details-grid"></div>
+                  <div class="detail-panels">
+                    <div class="chart-container">
+                      <canvas id="trend-chart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </section>
+          </div>
+
+          <!-- STATS VIEW -->
+          <div class="view" data-view="stats">
+            <section class="stats-layout">
+              <div class="card span-2">
+                <div class="card-header stats-header">
+                  <div>
+                    <div class="eyebrow">Historical stats</div>
+                    <h2>Playtime over time</h2>
+                  </div>
+                  <div class="stats-controls">
+                    <div class="range-picker" id="statsRangePicker" aria-label="Stats time range">
+                      <button class="range-btn" type="button" data-range="1w">1w</button>
+                      <button class="range-btn" type="button" data-range="1m">1m</button>
+                      <button class="range-btn" type="button" data-range="3m">3m</button>
+                      <button class="range-btn" type="button" data-range="6m">6m</button>
+                      <button class="range-btn" type="button" data-range="1y">1y</button>
+                      <button class="range-btn" type="button" data-range="5y">5y</button>
+                      <button class="range-btn" type="button" data-range="all">All</button>
+                    </div>
+                    <select id="statsGameFilter" class="game-filter" aria-label="Filter stats by game">
+                      <option value="">All games</option>
+                    </select>
+                  </div>
+                </div>
+                <div id="statsMetrics" class="metrics stats-metrics"></div>
+                <div class="chart-container stats-chart">
+                  <canvas id="stats-chart"></canvas>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <div>
+                    <div class="eyebrow">Breakdown</div>
+                    <h2>Top games in range</h2>
+                  </div>
+                </div>
+                <div id="statsTopGamesList" class="bar-list"></div>
+              </div>
+            </section>
+          </div>
+
+        </main>
+      </div>
+    </div>
+
+    <template id="metric-template">
+      <div class="metric">
+        <span class="metric-label"></span>
+        <strong class="metric-value"></strong>
+      </div>
+    </template>
+
+    <template id="fact-template">
+      <article class="fact-card">
+        <span class="fact-label"></span>
+        <strong class="fact-value"></strong>
+        <p class="muted fact-copy"></p>
+      </article>
+    </template>
+
+    <template id="game-row-template">
+      <button class="game-row" type="button">
+        <span class="game-swatch" aria-hidden="true"></span>
+        <div class="game-row-copy">
+          <span class="game-name"></span>
+        </div>
+      </button>
+    </template>
+
+    <template id="top-game-template">
+      <div class="bar-row">
+        <div class="bar-meta">
+          <strong class="top-game-name"></strong>
+          <span class="top-game-hours"></span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill"></div>
+        </div>
+      </div>
+    </template>
+
+    <template id="session-template">
+      <article class="session-item">
+        <div>
+          <strong class="session-name"></strong>
+          <div class="muted session-date"></div>
+        </div>
+        <div class="session-badge session-duration"></div>
+      </article>
+    </template>
+
+    <template id="empty-state-template">
+      <div class="empty-state">
+        <h3 class="empty-title"></h3>
+        <p class="muted empty-copy"></p>
+      </div>
+    </template>
+  </body>
+</html>
